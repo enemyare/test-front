@@ -13,5 +13,5 @@ import {RouterLink} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompanyItemComponent {
-  @Input() company!: Company;
+  @Input({ required: true }) company!: Company;
 }

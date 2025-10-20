@@ -17,6 +17,6 @@ import {CompanyItemComponent} from '../company-item/company-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompanyListComponent {
-  private apiService = inject(ApiService);
+  private readonly apiService = inject(ApiService);
   protected companies$: Observable<Company[]> = this.apiService.getCompanies();
 }
