@@ -1,13 +1,22 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ApiService} from '../../services/api.service';
+import {Company} from '../../model/company.interface';
+import {Observable} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-company-list',
-  imports: [],
+  imports: [
+    AsyncPipe,
+    RouterLink
+  ],
   standalone: true,
   templateUrl: './company-list.component.html',
   styleUrl: './company-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompanyListComponent {
-
+  private apiService = inject(ApiService);
+  protected companies$: Observable<Company[]> = this.apiService.getCompanies();
 }

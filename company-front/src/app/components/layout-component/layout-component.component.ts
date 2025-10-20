@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-layout-component',
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    RouterLink
   ],
   standalone: true,
   templateUrl: './layout-component.component.html',

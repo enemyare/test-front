@@ -1,1 +1,21 @@
-<p>company-list works!</p>
+@let companies = companies$ | async;
+
+@if (companies) {
+  <ul class="company-list">
+    @for (company of companies; track company.id) {
+      <li class="company-list__item" [routerLink]="['/detail', company.id]">
+        <img [src]="company.logo" alt="Логотип компании" class="company-list__logo"/>
+        <div class="company-list__info">
+          <h3 class="company-list__name">
+            {{ company.business_name }} <span>{{ company.suffix }}</span>
+          </h3>
+          <p class="company-list__industry"> Вид деятельности: {{ company.industry }}</p>
+          <p class="company-list__type">Тип: {{ company.type }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+
+} @else {
+  <p>Загрузка компаний...</p>
+}
