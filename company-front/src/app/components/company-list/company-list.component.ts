@@ -3,13 +3,13 @@ import {ApiService} from '../../services/api.service';
 import {Company} from '../../model/company.interface';
 import {Observable} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {CompanyItemComponent} from '../company-item/company-item.component';
 
 @Component({
   selector: 'app-company-list',
   imports: [
     AsyncPipe,
-    RouterLink
+    CompanyItemComponent
   ],
   standalone: true,
   templateUrl: './company-list.component.html',
