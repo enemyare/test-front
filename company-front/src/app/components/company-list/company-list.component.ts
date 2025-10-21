@@ -1,15 +1,13 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {ApiService} from '../../services/api.service';
-import {Company} from '../../model/company.interface';
-import {Observable} from 'rxjs';
-import {AsyncPipe} from '@angular/common';
 import {CompanyItemComponent} from '../company-item/company-item.component';
+import {CompanyFilterComponent} from '../company-filter/company-filter.component';
+import {CompanyFacadeService} from '../../services/company-facade.service';
 
 @Component({
   selector: 'app-company-list',
   imports: [
-    AsyncPipe,
-    CompanyItemComponent
+    CompanyItemComponent,
+    CompanyFilterComponent
   ],
   standalone: true,
   templateUrl: './company-list.component.html',
@@ -17,6 +15,7 @@ import {CompanyItemComponent} from '../company-item/company-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompanyListComponent {
-  private readonly apiService = inject(ApiService);
-  protected companies$: Observable<Company[]> = this.apiService.getCompanies();
+  private readonly companyFacadeService = inject(CompanyFacadeService);
+  protected companies  = this.companyFacadeService.companies;
+  protected loading = this.companyFacadeService.loading;
 }

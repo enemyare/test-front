@@ -1,0 +1,21 @@
+<form [formGroup]="form" class="filter-form">
+  <input
+    type="text"
+    placeholder="Поиск по названию..."
+    formControlName="name"
+  />
+
+  <select formControlName="type">
+    <option value="">Все типы</option>
+    @for (type of companyTypes() ; track type) {
+      <option [value]="type">{{ type }}</option>
+    }
+  </select>
+
+  <select formControlName="industry">
+    <option value="">Все виды деятельности</option>
+    @for (industry of industries(); track industry) {
+      <option  [value]="industry">{{ industry }}</option>
+    }
+  </select>
+</form>

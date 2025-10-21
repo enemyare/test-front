@@ -1,14 +1,13 @@
-@let companies = companies$ | async;
+<app-company-filter></app-company-filter>
 
-@if (companies) {
+@if (loading()) {
+  <p>Загрузка компаний...</p>
+} @else if (companies()?.length) {
   <ul class="company-list">
-    @for (company of companies; track company.id) {
-      <app-company-item [company]="company"/>
-    } @empty {
-      <p>Список компаний пуст</p>
+    @for (company of companies(); track company.id) {
+      <app-company-item [company]="company" />
     }
   </ul>
-
 } @else {
-  <p>Загрузка компаний...</p>
+  <p>Список компаний пуст</p>
 }
