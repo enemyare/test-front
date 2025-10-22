@@ -1,11 +1,13 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Company} from '../../model/company.interface';
+import {Company} from '../../model/company.types';
 import {RouterLink} from '@angular/router';
+import {CompanyNamePipe} from '../../pipes/company-name-pipe';
 
 @Component({
   selector: 'app-company-item',
   imports: [
-    RouterLink
+    RouterLink,
+    CompanyNamePipe
   ],
   standalone: true,
   templateUrl: './company-item.component.html',

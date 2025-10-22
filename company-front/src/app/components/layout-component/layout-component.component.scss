@@ -1,3 +1,9 @@
+.header-section{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .nav-list{
   display: flex;
   gap: 1rem;

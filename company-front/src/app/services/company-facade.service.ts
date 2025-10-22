@@ -3,7 +3,7 @@ import {CompanyApiService} from './company-api.service';
 import {CompanySortService} from './company-sort.service';
 import {CompanyFilterService} from './company-filter.service';
 import {HttpParams} from '@angular/common/http';
-import {finalize, switchMap} from 'rxjs';
+import {combineLatest, finalize, switchMap} from 'rxjs';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -12,23 +12,34 @@ import {toObservable, toSignal} from '@angular/core/rxjs-interop';
 export class CompanyFacadeService {
   private readonly companyService = inject(CompanyApiService);
   private readonly sortService = inject(CompanySortService);
+
   private readonly filterService = inject(CompanyFilterService);
   private readonly filters$ = toObservable(this.filterService.filters);
+  private readonly sort$ = toObservable(this.sortService.sort);
+
   readonly loading = signal(false);
 
   readonly companies = toSignal(
-    this.filters$.pipe(
-      switchMap((filters) => {
+    combineLatest([this.filters$, this.sort$]).pipe(
+      switchMap(([filters, sort]) => {
         let params = new HttpParams();
+
         if (filters.name) params = params.set('q', filters.name);
         if (filters.industry) params = params.set('industry', filters.industry);
         if (filters.type) params = params.set('company_type', filters.type);
 
+        if (sort.field) {
+          params = params.set('sort_by', sort.field);
+        }
+        params = params.set('sort_order', sort.direction);
+
         this.loading.set(true);
 
-        return this.companyService.getCompanies(params).pipe( finalize(() => this.loading.set(false)));
+        return this.companyService
+          .getCompanies(params)
+          .pipe(finalize(() => this.loading.set(false)));
       })
     ),
-    { initialValue: [] }
-  );
+    { initialValue: [] })
+
 }

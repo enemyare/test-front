@@ -1,12 +1,7 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {CompanyApiService} from './company-api.service';
 import {toSignal} from '@angular/core/rxjs-interop';
-
-export interface CompanyFilters {
-  name?: string;
-  type?: string;
-  industry?: string;
-}
+import {CompanyFilters} from '../model/company.types';
 
 @Injectable({
   providedIn: 'root'

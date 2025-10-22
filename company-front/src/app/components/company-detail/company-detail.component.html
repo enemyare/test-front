@@ -2,7 +2,7 @@
   <div class="company-detail">
     <img [src]="company.logo" alt="Логотип компании" class="company-detail__logo" />
     <h2 class="company-detail__name">
-      {{ company.suffix }} "{{ company.business_name }}"
+      {{ company.suffix | companyName:company.business_name }}
     </h2>
     <p class="company-detail__industry">Вид деятельности: {{ company.industry }}</p>
     <p class="company-detail__catch">Слоган: {{ company.catch_phrase }}</p>

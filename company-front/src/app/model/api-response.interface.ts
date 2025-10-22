@@ -1,7 +1,5 @@
-import {Company} from './company.interface';
-
 export interface ApiResponse<T> {
-  "data": Company[],
+  "data": T[],
   "page": number,
   "per_page": number,
   "total_pages": number,

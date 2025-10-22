@@ -2,12 +2,14 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CompanyItemComponent} from '../company-item/company-item.component';
 import {CompanyFilterComponent} from '../company-filter/company-filter.component';
 import {CompanyFacadeService} from '../../services/company-facade.service';
+import {CompanySortComponent} from '../company-sort/company-sort.component';
 
 @Component({
   selector: 'app-company-list',
   imports: [
     CompanyItemComponent,
-    CompanyFilterComponent
+    CompanyFilterComponent,
+    CompanySortComponent
   ],
   standalone: true,
   templateUrl: './company-list.component.html',

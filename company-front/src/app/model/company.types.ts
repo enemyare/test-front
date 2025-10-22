@@ -1,3 +1,6 @@
+export type SortField = 'name' | 'type' | 'industry' | '';
+export type DirectionType = 'asc' | 'desc';
+
 export interface Company {
   "id": number,
   "uid": string,
@@ -11,4 +14,15 @@ export interface Company {
   "latitude": number,
   "longitude": number,
   "logo": string
+}
+
+export interface CompanyFilters {
+  name?: string;
+  type?: string;
+  industry?: string;
+}
+
+export interface SortState {
+  field: SortField;
+  direction: DirectionType;
 }

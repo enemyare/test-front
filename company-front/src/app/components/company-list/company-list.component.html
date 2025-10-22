@@ -1,5 +1,7 @@
-<app-company-filter></app-company-filter>
-
+<div class="sort-bar">
+  <app-company-filter></app-company-filter>
+  <app-company-sort></app-company-sort>
+</div>
 @if (loading()) {
   <p>Загрузка компаний...</p>
 } @else if (companies()?.length) {

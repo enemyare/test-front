@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs';
-import {Company} from '../model/company.interface';
-import {ApiResponse} from '../model/ApiResponse.interface';
+import {Company} from '../model/company.types';
+import {ApiResponse} from '../model/api-response.interface';
 
 @Injectable({
   providedIn: 'root'

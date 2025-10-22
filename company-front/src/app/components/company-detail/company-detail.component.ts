@@ -1,14 +1,16 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CompanyApiService} from '../../services/company-api.service';
-import {Company} from '../../model/company.interface';
+import {Company} from '../../model/company.types';
 import {AsyncPipe} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {catchError, Observable, of, switchMap} from 'rxjs';
+import {CompanyNamePipe} from '../../pipes/company-name-pipe';
 
 @Component({
   selector: 'app-company-detail',
   imports: [
     AsyncPipe,
+    CompanyNamePipe,
   ],
   standalone: true,
   templateUrl: './company-detail.component.html',
