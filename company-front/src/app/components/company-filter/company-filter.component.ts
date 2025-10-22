@@ -27,9 +27,9 @@ export class CompanyFilterComponent implements OnInit {
     effect(() => {
       const isLoading = this.facadeService.loading();
       if (isLoading) {
-        this.form.disable({ emitEvent: false });
+        this.form.disable({emitEvent: false});
       } else {
-        this.form.enable({ emitEvent: false });
+        this.form.enable({emitEvent: false});
       }
     });
   }

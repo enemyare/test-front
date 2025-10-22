@@ -2,14 +2,21 @@
   <app-company-filter></app-company-filter>
   <app-company-sort></app-company-sort>
 </div>
-@if (loading()) {
-  <p>Загрузка компаний...</p>
-} @else if (companies()?.length) {
-  <ul class="company-list">
-    @for (company of companies(); track company.id) {
-      <app-company-item [company]="company" />
-    }
-  </ul>
-} @else {
-  <p>Список компаний пуст</p>
+@switch (true) {
+  @case (isLoading()) {
+    <p>Загрузка компаний...</p>
+  }
+  @case (isError()) {
+    <p class="error">Ошибка при загрузке данных</p>
+  }
+  @case (companies().length > 0) {
+    <ul class="company-list">
+      @for (company of companies(); track company.id) {
+        <app-company-item [company]="company" />
+      }
+    </ul>
+  }
+  @default {
+    <p>Список компаний пуст</p>
+  }
 }

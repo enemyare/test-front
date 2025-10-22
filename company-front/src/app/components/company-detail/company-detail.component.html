@@ -9,7 +9,9 @@
     <p class="company-detail__phone">Телефон: {{ company.phone_number }}</p>
     <p class="company-detail__address">Адрес: {{ company.full_address }}</p>
   </div>
-} @else {
-  <p>Загрзка...</p>
+} @else if (isLoading()) {
+  <p>Загрузка...</p>
+}@else if (isError()) {
+  <p>Произошла ошибка</p>
 }
 

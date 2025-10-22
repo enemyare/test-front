@@ -19,5 +19,6 @@ import {CompanySortComponent} from '../company-sort/company-sort.component';
 export class CompanyListComponent {
   private readonly companyFacadeService = inject(CompanyFacadeService);
   protected companies  = this.companyFacadeService.companies;
-  protected loading = this.companyFacadeService.loading;
+  protected isLoading = this.companyFacadeService.loading;
+  protected isError = this.companyFacadeService.error;
 }

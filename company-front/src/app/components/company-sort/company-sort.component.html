@@ -1,7 +1,7 @@
 <div class="sort-container">
-  <label for="sortField" class="sort-label">Сортировать по полю:</label>
+  <span class="sort-label">Сортировать по полю:</span>
   <div class="sort__controls">
-    <select id="sortField" [ngModel]="sort().field" (ngModelChange)="onFieldChange($event)">
+    <select [ngModel]="sort().field" (ngModelChange)="onFieldChange($event)">
       @for ( option of sortOptions; track option) {
         <option
           [value]="option.value"

@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {CompanyApiService} from '../../services/company-api.service';
 import {Company} from '../../model/company.types';
 import {AsyncPipe} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {catchError, Observable, of, switchMap} from 'rxjs';
 import {CompanyNamePipe} from '../../pipes/company-name-pipe';
+import {CompanyFacadeService} from '../../services/company-facade.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -19,16 +19,19 @@ import {CompanyNamePipe} from '../../pipes/company-name-pipe';
 })
 export class CompanyDetailComponent {
   private readonly route = inject(ActivatedRoute);
-  private readonly apiService = inject(CompanyApiService);
+  private readonly companyFacadeService = inject(CompanyFacadeService);
+  isLoading = this.companyFacadeService.loading
+  isError = this.companyFacadeService.error
+
   company$: Observable<Company | null> = this.route.paramMap.pipe(
     switchMap(params => {
       const id = params.get('id');
       if (!id) {
         return of(null);
       }
-      return this.apiService.getCompany(id);
+      return this.companyFacadeService.getCompany(id);
     }),
-    catchError(error => {
+    catchError(()  => {
       return of(null);
     })
   );
