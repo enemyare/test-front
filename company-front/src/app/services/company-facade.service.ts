@@ -3,7 +3,7 @@ import {CompanyApiService} from './company-api.service';
 import {CompanySortService} from './company-sort.service';
 import {CompanyFilterService} from './company-filter.service';
 import {HttpParams} from '@angular/common/http';
-import {catchError, combineLatest, finalize, switchMap, throwError} from 'rxjs';
+import {catchError, combineLatest, finalize, of, switchMap, throwError} from 'rxjs';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -39,9 +39,9 @@ export class CompanyFacadeService {
         return this.companyService
           .getCompanies(params)
           .pipe(
-            catchError((error) => {
+            catchError(() => {
               this.error.set(true)
-              return throwError(() => error);
+              return of(null);
             }),
             finalize(() => this.loading.set(false))
         );
