@@ -9,7 +9,7 @@
   @case (isError()) {
     <p class="error">Ошибка при загрузке данных</p>
   }
-  @case (companies().length > 0) {
+  @case (!!companies()?.length) {
     <ul class="company-list">
       @for (company of companies(); track company.id) {
         <app-company-item [company]="company" />
