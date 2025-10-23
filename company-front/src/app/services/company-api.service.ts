@@ -3,13 +3,14 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs';
 import {Company} from '../model/company.types';
 import {ApiResponse} from '../model/api-response.interface';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyApiService {
   private readonly http: HttpClient = inject(HttpClient);
-  private readonly baseUrl: string = "https://faker-api.milki.space";
+  private readonly baseUrl: string = environment.apiUrl;
 
   public getCompanies(params?: HttpParams)  {
     return this.http.get<ApiResponse<Company>>(`${this.baseUrl}/companies?page=1&per_page=50&sort_by=id&sort_order=asc`,
