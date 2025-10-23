@@ -27,8 +27,9 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin-bottom: 3rem;
+  justify-content: center;
 }
 
 .content h1 {

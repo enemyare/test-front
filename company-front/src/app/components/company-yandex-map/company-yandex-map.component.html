@@ -1,15 +1,4 @@
 <div class="container">
-  <aside class="company-sidebar">
-    <h3 class="company-sidebar__title">Компании</h3>
-    <ul class="company-list">
-      @for (company of visibleCompanies; track company.id) {
-        <li class="company-list__item" (click)="focusCompany(company)">
-          <h4>{{ company.business_name }}</h4>
-        </li>
-      }
-    </ul>
-    <button class="company-list__button" (click)="showAll()">Показать все</button>
-  </aside>
   <section class="map-section">
     <y-map
       class="map"
@@ -36,4 +25,15 @@
       }
     </y-map>
   </section>
+  <aside class="company-sidebar">
+    <h3 class="company-sidebar__title">Компании</h3>
+    <ul class="company-list">
+      @for (company of visibleCompanies; track company.id) {
+        <li class="company-list__item" (click)="focusCompany(company)">
+          <h4>{{ company.business_name }}</h4>
+        </li>
+      }
+    </ul>
+    <button class="company-list__button" (click)="showAll()">Показать все</button>
+  </aside>
 </div>
