@@ -1,0 +1,39 @@
+<div class="container">
+  <section class="map-section">
+    <y-map
+      class="map"
+      [props]="{
+        location: {
+          center: center(),
+          zoom: 11
+        },
+        theme: 'light'
+      }"
+    >
+      <y-map-default-scheme-layer />
+      <y-map-default-features-layer />
+
+      @for (company of companies(); track company.id) {
+        <y-map-default-marker
+          [props]="{
+            coordinates: [company.longitude, company.latitude],
+            title: company.business_name,
+            subtitle: company.industry,
+            color: 'red'
+          }"
+        />
+      }
+    </y-map>
+  </section>
+  <aside class="company-sidebar">
+    <h3 class="company-sidebar__title">Компании</h3>
+    <ul class="company-list">
+      @for (company of visibleCompanies; track company.id) {
+        <li class="company-list__item" (click)="focusCompany(company)">
+          <h4>{{ company.business_name }}</h4>
+        </li>
+      }
+    </ul>
+    <button class="company-list__button" (click)="showAll()">Показать все</button>
+  </aside>
+</div>

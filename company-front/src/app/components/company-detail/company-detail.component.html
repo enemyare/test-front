@@ -1,0 +1,17 @@
+@if (company$ | async; as company) {
+  <div class="company-detail">
+    <img [src]="company.logo" alt="Логотип компании" class="company-detail__logo" />
+    <h2 class="company-detail__name">
+      {{ company.suffix | companyName:company.business_name }}
+    </h2>
+    <p class="company-detail__industry">Вид деятельности: {{ company.industry }}</p>
+    <p class="company-detail__catch">Слоган: {{ company.catch_phrase }}</p>
+    <p class="company-detail__phone">Телефон: {{ company.phone_number }}</p>
+    <p class="company-detail__address">Адрес: {{ company.full_address }}</p>
+  </div>
+} @else if (isLoading()) {
+  <p>Загрузка...</p>
+}@else if (isError()) {
+  <p>Произошла ошибка</p>
+}
+

@@ -1,0 +1,21 @@
+<div class="sort-container">
+  <span class="sort-label">Сортировать по полю:</span>
+  <div class="sort__controls">
+    <select [ngModel]="sort().field" (ngModelChange)="onFieldChange($event)">
+      @for ( option of sortOptions; track option) {
+        <option
+          [value]="option.value"
+          [selected]="sort().field === option.value"
+        >
+          {{ option.label }}
+        </option>
+      }
+    </select>
+    <button
+      class="sort-btn"
+      (click)="toggleDirection()"
+    >
+      {{ sort().direction === 'asc' ? '▼ По возрастанию' : '▲ По убыванию' }}
+    </button>
+  </div>
+</div>

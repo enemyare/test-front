@@ -1,0 +1,22 @@
+<div class="sort-bar">
+  <app-company-filter></app-company-filter>
+  <app-company-sort></app-company-sort>
+</div>
+@switch (true) {
+  @case (isLoading()) {
+    <p>Загрузка компаний...</p>
+  }
+  @case (isError()) {
+    <p class="error">Ошибка при загрузке данных</p>
+  }
+  @case (!!companies()?.length) {
+    <ul class="company-list">
+      @for (company of companies(); track company.id) {
+        <app-company-item [company]="company" />
+      }
+    </ul>
+  }
+  @default {
+    <p>Список компаний пуст</p>
+  }
+}
